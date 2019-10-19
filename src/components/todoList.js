@@ -18,12 +18,32 @@ class TodoList extends Component {
     };
 
     deleteTodo = (id) => {
-       this.props.deleteTodo(id);
+        this.props.deleteTodo(id);
+    }
+    rendeList = () => {
+        const { todos } = this.props;
+        return todos.length > 0 ?
+            <div className="containerList">
+                <ul>
+                    {todos.map(({ id, text }) => {
+                        return (
+                            <li key={id}>
+                                {text}
+                                <button type="button" onClick={() => this.deleteTodo(id)}>
+                                    Delete
+                                </button>
+                            </li>)
+                    }
+                    )}
+                </ul>
+            </div>
+            : <p>Não há afazeres</p>
     }
 
     render() {
         return (
             <div className="App">
+                <h1>Lista de Compromissos</h1>
                 <form onSubmit={this.handleSubmit}>
                     <input
                         type="text"
@@ -32,20 +52,8 @@ class TodoList extends Component {
                     />
                     <button type="submit">Salvar</button>
                 </form>
+                {this.rendeList()}
 
-                <ul>
-                    {this.props.todos.map(({id,text}) => {
-                        return (
-                        <li key={id}>
-                        {text}
-                        <button type="button" onClick={() => this.deleteTodo(id)}>
-                            Delete
-                        </button>
-                        </li>)
-                        }
-                    )}
-
-                </ul>
             </div>
         );
     }
