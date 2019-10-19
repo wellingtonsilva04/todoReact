@@ -11,7 +11,6 @@ function App() {
       <PersistGate loading={null} persistor={persistor}>
         <TodoList />
       </PersistGate>
-
     </Provider>
 
   );

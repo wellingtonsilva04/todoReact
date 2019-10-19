@@ -17,6 +17,10 @@ class TodoList extends Component {
         this.setState({ newTodoText: "" });
     };
 
+    deleteTodo = (id) => {
+       this.props.deleteTodo(id);
+    }
+
     render() {
         return (
             <div className="App">
@@ -28,9 +32,19 @@ class TodoList extends Component {
                     />
                     <button type="submit">Salvar</button>
                 </form>
-                
+
                 <ul>
-                    {this.props.todos.map(todo => <li key={todo.id}>{todo.text}</li>)}
+                    {this.props.todos.map(({id,text}) => {
+                        return (
+                        <li key={id}>
+                        {text}
+                        <button type="button" onClick={() => this.deleteTodo(id)}>
+                            Delete
+                        </button>
+                        </li>)
+                        }
+                    )}
+
                 </ul>
             </div>
         );
