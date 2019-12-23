@@ -43,7 +43,7 @@ class TodoList extends Component {
     render() {
         return (
             <div className="App">
-                <h1>Lista de Compromissos</h1>
+                <h2>Lista de Compromissos</h2>
                 <form onSubmit={this.handleSubmit}>
                     <input
                         type="text"
