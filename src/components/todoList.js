@@ -1,69 +1,67 @@
-import React, { Component } from 'react';
+import React, { useState, useRef } from 'react';
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import * as TodoActions from "../store/actions/todos";
-class TodoList extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            newTodoText: ""
-        }
-    }
-    handleSubmit = event => {
-        event.preventDefault();
 
-        this.props.addTodo(this.state.newTodoText);
+function TodoList(props) {
+  const [newTodoText, setNewTodoText] = useState('');
+  const inputRef = useRef(null);
 
-        this.setState({ newTodoText: "" });
-    };
+  const handleSubmit = event => {
+    event.preventDefault();
+    props.addTodo(newTodoText);
+    console.log(props);
+    setNewTodoText("");
+    
+  };
 
-    deleteTodo = (id) => {
-        this.props.deleteTodo(id);
-    }
-    rendeList = () => {
-        const { todos } = this.props;
-        return todos.length > 0 ?
-            <div className="containerList">
-                <ul>
-                    {todos.map(({ id, text }) => {
-                        return (
-                            <li key={id}>
-                                {text}
-                                <button type="button" onClick={() => this.deleteTodo(id)}>
-                                    Delete
-                                </button>
-                            </li>)
-                    }
-                    )}
-                </ul>
-            </div>
-            : <p>Não há afazeres</p>
-    }
+  const handlerDeleteTodo = (id) => {
+    props.deleteTodo(id);
+  }
+  const rendeList = () => {
+    const { todos } = props;
+    console.log('todo',todos);
+    return todos.length > 0 ?
+      <div className="containerList">
+        <ul>
+          {todos.map(({ id, text }) => {
+            return (
+              <li key={id}>
+                {text}
+                <button type="button" onClick={() => handlerDeleteTodo(id)}>
+                  Delete
+                </button>
+              </li>)
+          }
+          )}
+        </ul>
+      </div>
+      : <p>Não há afazeres</p>
+  }
+  return (
+    <div className="App">
+      <h2>Lista de Compromissos</h2>
+      <form onSubmit={handleSubmit}>
+        <input
+          type="text"
+          ref={inputRef}
+          onChange={event => setNewTodoText(event.target.value)}
+          value={newTodoText}
+        />
+        <button type="submit">Salvar</button>
+      </form>
+      {rendeList()}
 
-    render() {
-        return (
-            <div className="App">
-                <h2>Lista de Compromissos</h2>
-                <form onSubmit={this.handleSubmit}>
-                    <input
-                        type="text"
-                        onChange={e => this.setState({ newTodoText: e.target.value })}
-                        value={this.state.newTodoText}
-                    />
-                    <button type="submit">Salvar</button>
-                </form>
-                {this.rendeList()}
-
-            </div>
-        );
-    }
+    </div>
+  );
 }
 
+
 const mapStateToProps = state => ({
-    todos: state.todos
+  todos: state.todos
 });
 
 const mapDispatchToProps = dispatch =>
-    bindActionCreators(TodoActions, dispatch);
+  bindActionCreators(TodoActions, dispatch);
 
 export default connect(mapStateToProps, mapDispatchToProps)(TodoList);
