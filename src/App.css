@@ -1,36 +1,37 @@
 .App {
-  margin:auto;
-  min-height: 100vh;
-  max-width: 70vw;
-  display: flex;
-  padding-left: 10px;
-  padding-right: 10px;
-  align-items: center;
-  flex-direction: column;
-  font-size: calc(10px + 2vmin);
-  background-color: rgb(241, 229, 229);
-  
+    margin: auto;
+    min-height: 100vh;
+    max-width: 70vw;
+    display: flex;
+    padding-left: 10px;
+    padding-right: 10px;
+    align-items: center;
+    flex-direction: column;
+    font-size: calc(10px + 2vmin);
+    background-color: rgb(241, 229, 229);
 }
-h2{
-  display: flex;
-  flex: 1;
-  max-height: 12vh;
-  width: 100%;
-  align-items: center;
-  justify-content: center;
-  background-color: thistle;
-  color: rgb(49, 49, 49);
-}
-p {
-  color: rgb(207, 15, 15);
 
+h2 {
+    display: flex;
+    flex: 1;
+    max-height: 12vh;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+    background-color: thistle;
+    color: rgb(49, 49, 49);
 }
-.containerList{
-  display: flex;
-  width: 100%;
-  flex: 1;
-  margin-top: 20px;
-  background-color: rgb(248, 244, 248);
-  flex-direction: column;
-  color: rgb(49, 49, 49);
+
+p {
+    color: rgb(207, 15, 15);
+}
+
+.containerList {
+    display: flex;
+    width: 100%;
+    flex: 1;
+    margin-top: 20px;
+    background-color: rgb(248, 244, 248);
+    flex-direction: column;
+    color: rgb(49, 5, 50);
 }
