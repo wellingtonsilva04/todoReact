@@ -5,7 +5,6 @@ import { PersistGate } from 'redux-persist/integration/react';
 import { store, persistor } from './store';
 import TodoList from './components/todoList';
 
-
 const App = () => (
   <Provider store={store}>
     <PersistGate
