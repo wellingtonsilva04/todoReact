@@ -1,32 +1,38 @@
-import React, { useState, useRef } from 'react';
-import { bindActionCreators } from 'redux';
-import { connect } from 'react-redux';
+import React, { useState, useRef, FormEvent } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { addTodo, deleteTodo } from '../store/reducers/todos.reducer';
+import { TodoInter } from '../store/todo.model';
+import { RootReducer } from '../store/reducers';
 
-import * as TodoActions from '../store/actions/todos';
-
-function TodoList(props) {
+function TodoList() {
   const [newTodoText, setNewTodoText] = useState('');
+
   const inputRef = useRef(null);
 
-  const handleSubmit = (event) => {
+  const dispatch = useDispatch();
+
+  const todos: TodoInter[] = useSelector((state: RootReducer) => state.todo.todos);
+
+  const handleSubmit = (event: FormEvent) => {
     event.preventDefault();
-    props.addTodo(newTodoText);
-    setNewTodoText('');
+    if (newTodoText !== '') {
+      setNewTodoText('');
+      dispatch(addTodo(newTodoText));
+    }
   };
 
-  const handlerDeleteTodo = (id) => {
-    props.deleteTodo(id);
+  const handlerDeleteTodo = (id: number): void => {
+    dispatch(deleteTodo(id));
   };
 
   const rendeList = () => {
-    const { todos } = props;
     if (todos.length > 0) {
       return (
         <div className="containerList">
           <ul>
-            {todos.map(({ id, text }) => (
+            {todos.map(({ id, description }) => (
               <li key={id}>
-                {text}
+                {description}
                 <button
                   type="button"
                   onClick={() => handlerDeleteTodo(id)}
@@ -42,7 +48,6 @@ function TodoList(props) {
     return <p>Não há afazeres</p>;
   };
 
-
   return (
     <div className="App">
       <h2>Lista de Compromissos</h2>
@@ -53,7 +58,7 @@ function TodoList(props) {
           onChange={(event) => setNewTodoText(event.target.value)}
           value={newTodoText}
         />
-        <button type="submit">Salvar</button>
+        <button type="submit">Adicionar</button>
       </form>
       {rendeList()}
 
@@ -61,11 +66,4 @@ function TodoList(props) {
   );
 }
 
-
-const mapStateToProps = (state) => ({
-  todos: state.todos,
-});
-const mapDispatchToProps = (dispatch) =>
-  bindActionCreators(TodoActions, dispatch);
-
-export default connect(mapStateToProps, mapDispatchToProps)(TodoList);
+export default TodoList;
