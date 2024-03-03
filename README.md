@@ -1,4 +1,6 @@
 # Lista de Tarefas ✏️
+> Status do Projeto: :warning: Em desenvolvimento
+
 Bem-vindo à Lista de Tarefas, o projeto perfeito para você que adora organizar sua vida. Usamos tecnologias modernas para criar uma aplicação bonita, eficiente e responsiva.
 
 ## Tecnologias Utilizadas 🛠️
@@ -19,10 +21,9 @@ Na pasta `todoReact` installe as dependências do projeto
 Então inicie o servidor
 > yarn start
 
-Execute o aplicativo em modo de desenvolvimento. 
-Abrir [http://localhost:3000](http://localhost:3000) para visualizar em seu navegador.
+Execute o aplicativo em modo de desenvolvimento e abra [http://localhost:3000](http://localhost:3000) para visualizar em seu navegador.
 
-## Funcionalidades
+## :hammer: Funcionalidades
 - [x] Adicionar tearefa
 - [x] Remover tarefa
 - [ ] Editar
