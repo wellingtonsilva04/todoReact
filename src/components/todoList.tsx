@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { addTodo, deleteTodo } from '../store/reducers/todos.reducer';
 import { TodoInter } from '../store/todo.model';
 import { RootReducer } from '../store/reducers';
+import TodoItem from './todoItem';
 
 function TodoList() {
   const [newTodoText, setNewTodoText] = useState('');
@@ -30,17 +31,9 @@ function TodoList() {
       return (
         <div className="containerList">
           <ul>
-            {todos.map(({ id, description }) => (
-              <li key={id}>
-                {description}
-                <button
-                  type="button"
-                  onClick={() => handlerDeleteTodo(id)}
-                >
-                  Delete
-                </button>
-              </li>
-            ))}
+            {todos.map((item: TodoInter) => (
+              <TodoItem key={item.id} deleteHandler={handlerDeleteTodo} todo={item} />))}
+
           </ul>
         </div>
       );
@@ -50,7 +43,7 @@ function TodoList() {
 
   return (
     <div className="App">
-      <h2>Lista de Compromissos</h2>
+      <h2>Lista de Tarefas</h2>
       <form onSubmit={handleSubmit}>
         <input
           type="text"
@@ -58,7 +51,7 @@ function TodoList() {
           onChange={(event) => setNewTodoText(event.target.value)}
           value={newTodoText}
         />
-        <button type="submit">Adicionar</button>
+        <button type="submit">+</button>
       </form>
       {rendeList()}
 
