@@ -4,6 +4,7 @@ import { Provider } from 'react-redux';
 import { PersistGate } from 'redux-persist/integration/react';
 import { store, persistor } from './store';
 import TodoList from './components/todoList';
+import HeaderComponent from './components/header';
 
 function App() {
   return (
@@ -12,7 +13,11 @@ function App() {
         loading={null}
         persistor={persistor}
       >
-        <TodoList />
+        <div className="App">
+          <HeaderComponent />
+          <TodoList />
+        </div>
+
       </PersistGate>
     </Provider>
   );

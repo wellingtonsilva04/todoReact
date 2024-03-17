@@ -10,10 +10,10 @@ interface TodoItemProps {
 function TodoItem({ key, deleteHandler, todo }: TodoItemProps) {
   const { id } = todo;
   return (
-    <li key={key}>
-      {todo.description}
+    <div key={key} className="itemContainer">
+      <p className="textDescription">{todo.description}</p>
       <button type="button" onClick={() => deleteHandler(id)}>Excluir</button>
-    </li>
+    </div>
   );
 }
 export default TodoItem;
