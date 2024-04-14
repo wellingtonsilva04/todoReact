@@ -33,7 +33,7 @@ Execute o aplicativo em modo de desenvolvimento e abra [http://localhost:3000](h
 - [x] Remover tarefa
 - [ ] Editar tarefa
 - [x] Mudar o status da tarefa ( concluido ou pendente)
-- [ ] Aplicar filtros para visualizar as tarefas desejdas. (todas, concluídas e pendentes)
+- [ ] Aplicar filtros para visualizar as tarefas desejadas. (todas, concluídas e pendentes)
 
 ## Outros Scripts avaliados
 
