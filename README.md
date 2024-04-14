@@ -29,10 +29,11 @@ Execute o aplicativo em modo de desenvolvimento e abra [http://localhost:3000](h
 
 ## :hammer: Funcionalidades
 
-- [x] Adicionar tearefa
+- [x] Adicionar tarefa
 - [x] Remover tarefa
-- [ ] Editar
+- [ ] Editar tarefa
 - [x] Mudar o status da tarefa ( concluido ou pendente)
+- [ ] Aplicar filtros para visualizar as tarefas desejdas. (todas, concluídas e pendentes)
 
 ## Outros Scripts avaliados
 
