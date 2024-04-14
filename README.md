@@ -1,33 +1,38 @@
 # Lista de Tarefas ✏️
+
 > Status do Projeto: :warning: Em desenvolvimento
 
 Bem-vindo à Lista de Tarefas, o projeto perfeito para você que adora organizar sua vida. Usamos tecnologias modernas para criar uma aplicação bonita, eficiente e responsiva.
 
 ## Tecnologias Utilizadas 🛠️
+
 - React com typescript
 - Redux
 - Eslint
 - React-persist
 
 ## Uso
+
 Clone este repo:
 
-> ``git clone https://github.com/wellingtonsilva04/todoReact.git``
+> `git clone https://github.com/wellingtonsilva04/todoReact.git`
 
 Na pasta `todoReact` installe as dependências do projeto
 
 > yarn install
 
 Então inicie o servidor
+
 > yarn start
 
 Execute o aplicativo em modo de desenvolvimento e abra [http://localhost:3000](http://localhost:3000) para visualizar em seu navegador.
 
 ## :hammer: Funcionalidades
+
 - [x] Adicionar tearefa
 - [x] Remover tarefa
 - [ ] Editar
-- [ ] Mudar o status da tarefa ( concluido ou pendente)
+- [x] Mudar o status da tarefa ( concluido ou pendente)
 
 ## Outros Scripts avaliados
 

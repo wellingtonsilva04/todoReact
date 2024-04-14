@@ -5,13 +5,17 @@ interface TodoItemProps {
   todo: TodoInter,
   key: number,
   deleteHandler: (id: number) => void
+  updateChechedHandler: (id: number) => void
 }
 
-function TodoItem({ key, deleteHandler, todo }: TodoItemProps) {
-  const { id } = todo;
+function TodoItem({
+  key, deleteHandler, updateChechedHandler, todo,
+}: TodoItemProps) {
+  const { id, isDone } = todo;
   return (
     <div key={key} className="itemContainer">
-      <p className="textDescription">{todo.description}</p>
+      <input type="checkbox" defaultChecked={isDone} onClick={() => updateChechedHandler(id)} />
+      <p className={`${isDone ? 'completed' : 'incompleted'}`}>{todo.description}</p>
       <button type="button" onClick={() => deleteHandler(id)}>Excluir</button>
     </div>
   );

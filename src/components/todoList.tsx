@@ -1,6 +1,6 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { deleteTodo } from '../store/reducers/todos.reducer';
+import { deleteTodo, updateCompleted } from '../store/reducers/todos.reducer';
 import { TodoInter } from '../store/todo.model';
 import { RootReducer } from '../store/reducers';
 import TodoItem from './todoItem';
@@ -13,13 +13,21 @@ function TodoList() {
   const handlerDeleteTodo = (id: number): void => {
     dispatch(deleteTodo(id));
   };
-
+  const updateChechedHandler = (id: number): void => {
+    dispatch(updateCompleted(id));
+  };
   const rendeList = () => {
     if (todos.length > 0) {
       return (
         <ul>
           {todos.map((item: TodoInter) => (
-            <TodoItem key={item.id} deleteHandler={handlerDeleteTodo} todo={item} />))}
+            <TodoItem
+              key={item.id}
+              updateChechedHandler={updateChechedHandler}
+              deleteHandler={handlerDeleteTodo}
+              todo={item}
+            />
+          ))}
         </ul>
       );
     }

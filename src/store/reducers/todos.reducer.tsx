@@ -1,30 +1,17 @@
-/* export default function todos(state = [], action) {
-  switch (action.type) {
-    case 'ADD_TODO':
-      return [...state, { id: Math.random(), text: action.payload.text }];
-    case 'DELETE_TODO':
-      return state.filter((elem) => elem.id !== action.payload.id);
-
-    default:
-      return state;
-  }
-}
-*/
-
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 import { TodoInter } from '../todo.model';
 
-interface TodoReducerInterface {
+interface TodoState {
   todos: TodoInter[];
 }
-const initialState: TodoReducerInterface = { todos: [] };
+const initialState: TodoState = { todos: [] };
 
-const todoReducer = createSlice({
+const todoReducerSlice = createSlice({
   name: 'todos',
   initialState,
   reducers: {
     addTodo: (state, action) => {
-      state.todos.push({ id: Math.random(), description: action.payload });
+      state.todos.push({ id: Math.random(), description: action.payload, isDone: false });
       return state;
     },
     deleteTodo: (state, action: PayloadAction<number>) => {
@@ -34,9 +21,17 @@ const todoReducer = createSlice({
       ];
       return newstate;
     },
+    updateCompleted: (state, action: PayloadAction<number>) => {
+      const indexUp = state.todos.findIndex((item) => item.id === action.payload);
+      const upTodo = { ...state.todos[indexUp], isDone: !state.todos[indexUp].isDone };
+      const newstate = { ...state };
+      newstate.todos = [...newstate.todos.slice(0, indexUp),
+        upTodo, ...newstate.todos.slice(indexUp + 1)];
+      return newstate;
+    },
   },
 });
 
-export const { addTodo, deleteTodo } = todoReducer.actions;
+export const { addTodo, deleteTodo, updateCompleted } = todoReducerSlice.actions;
 
-export default todoReducer.reducer;
+export default todoReducerSlice.reducer;
