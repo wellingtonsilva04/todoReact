@@ -7,7 +7,7 @@ interface TodoState {
 const initialState: TodoState = { todos: [] };
 
 const todoReducerSlice = createSlice({
-  name: 'todos',
+  name: 'todostate',
   initialState,
   reducers: {
     addTodo: (state, action) => {
@@ -34,4 +34,4 @@ const todoReducerSlice = createSlice({
 
 export const { addTodo, deleteTodo, updateCompleted } = todoReducerSlice.actions;
 
-export default todoReducerSlice.reducer;
+export const todoReducer = todoReducerSlice.reducer;

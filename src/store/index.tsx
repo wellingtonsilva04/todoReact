@@ -1,25 +1,23 @@
-import { configureStore } from '@reduxjs/toolkit';
-import { persistStore, persistReducer, PersistConfig } from 'redux-persist';
+import { combineReducers, configureStore } from '@reduxjs/toolkit';
+import { persistReducer } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
+import { todoReducer } from './reducers/todos.reducer';
 
-import { rootReducer, RootReducer } from './reducers';
-
-const persitConfig: PersistConfig<any> = {
+const persitConfig = {
   key: '@todoRoot',
   storage,
 };
 
-const persistedReducer = persistReducer<RootReducer>(persitConfig, rootReducer);
+const rootReducer = combineReducers({
+  todoState: todoReducer,
+})
+const persistedReducer = persistReducer(persitConfig, rootReducer);
 
-const store = configureStore({
+export const store = configureStore({
   reducer: persistedReducer,
   devTools: true,
 });
 
-const persistor = persistStore(store);
-
 export type StoreDispatch = typeof store.dispatch;
 
-export type StoreState = ReturnType<typeof store.getState>;
-
-export { store, persistor };
+export type RootState = ReturnType<typeof store.getState>;

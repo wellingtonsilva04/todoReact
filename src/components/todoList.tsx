@@ -2,14 +2,13 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { deleteTodo, updateCompleted } from '../store/reducers/todos.reducer';
 import { TodoInter } from '../store/todo.model';
-import { RootReducer } from '../store/reducers';
+import { RootState } from '../store';
 import TodoItem from './todoItem';
 
 function TodoList() {
   const dispatch = useDispatch();
 
-  const todos: TodoInter[] = useSelector((state: RootReducer) => state.todo.todos);
-
+  const todos = useSelector((state: RootState) => state.todoState.todos);
   const handlerDeleteTodo = (id: number): void => {
     dispatch(deleteTodo(id));
   };
